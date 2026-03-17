@@ -270,7 +270,7 @@ require('lazy').setup({
       spec = {
         { '<leader>s', group = '[S]earch' },
         { '<leader>t', group = '[T]oggle' },
-        { '<leader>h', group = 'Git [H]unk', mode = { 'n', 'v' } },
+        --  { '<leader>h', group = 'Git [H]unk', mode = { 'n', 'v' } },
       },
     },
   },
@@ -373,6 +373,44 @@ require('lazy').setup({
       vim.keymap.set('n', '<leader><leader>', builtin.buffers, { desc = '[ ] Find existing buffers' })
 
       vim.keymap.set('n', '<leader>sp', '<cmd>Telescope projects<CR>', { desc = '[S]earch [P]rojects' })
+
+      vim.keymap.set('n', '<leader>su', function()
+        builtin.find_files {
+          prompt_title = 'Find Files in ~',
+          cwd = '/home/toasdn',
+          hidden = true,
+        }
+      end, { desc = '[S]earch [U]ser files' })
+
+      vim.keymap.set('n', '<leader>sa', function()
+        builtin.find_files {
+          prompt_title = 'Find All Files',
+          cwd = '/',
+          hidden = true,
+        }
+      end, { desc = '[S]earch [A]ll files' })
+
+      vim.keymap.set('n', '<leader>st', function()
+        builtin.find_files {
+          prompt_title = 'Find Typical Files',
+          cwd = '/',
+          hidden = true,
+          search_dirs = {
+            '/home/toasdn/dev/projects',
+            '/home/toasdn/.config/hypr',
+            '/home/toasdn/.config/nvim',
+            '/home/toasdn/.config/quickshell',
+          },
+        }
+      end, { desc = '[S]earch [T]ypical locations for files' })
+
+      vim.keymap.set('n', '<leader>s*', function()
+        builtin.live_grep {
+          prompt_title = 'Grep Everywhere',
+          cwd = '/',
+        }
+      end, { desc = '[S]earch [*] literally all file contents' })
+
       -- Slightly advanced example of overriding default behavior and theme
       vim.keymap.set('n', '<leader>/', function()
         -- You can pass additional configuration to Telescope to change the theme, layout, etc.
