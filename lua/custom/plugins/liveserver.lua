@@ -6,12 +6,12 @@ return {
     {
       '<leader>ls',
       '<cmd>LiveServerStart<cr>',
-      desc = 'Start Live Server',
+      desc = '[L]ive server [s]tart',
     },
     {
-      '<leader>lx',
+      '<leader>lq',
       '<cmd>LiveServerStop<cr>',
-      desc = 'Stop Live Server',
+      desc = '[L]ive server [q]uit',
     },
   },
 }
