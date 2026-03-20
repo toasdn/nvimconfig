@@ -324,14 +324,7 @@ require('lazy').setup({
         'nosduco/remote-sshfs.nvim',
         dependencies = { 'nvim-telescope/telescope.nvim', 'nvim-lua/plenary.nvim' },
         config = function()
-          require('remote-sshfs').setup {
-            log = {
-              enabled = true,
-              types = {
-                all = true,
-              },
-            },
-          }
+          require('remote-sshfs').setup {}
 
           local api = require 'remote-sshfs.api'
           vim.keymap.set('n', '<leader>rs', api.connect, { desc = '[R]emote [S]tart' })
@@ -932,20 +925,11 @@ require('lazy').setup({
       -- - sr)'  - [S]urround [R]eplace [)] [']
       require('mini.surround').setup()
 
-      -- Simple and easy statusline.
-      --  You could remove this setup call if you don't like it,
-      --  and try some other statusline plugin
-      local statusline = require 'mini.statusline'
-      -- set use_icons to true if you have a Nerd Font
-      statusline.setup { use_icons = vim.g.have_nerd_font }
+      require('mini.comment').setup()
+      require('mini.splitjoin').setup()
 
-      -- You can configure sections in the statusline by overriding their
-      -- default behavior. For example, here we set the section for
-      -- cursor location to LINE:COLUMN
-      ---@diagnostic disable-next-line: duplicate-set-field
-      statusline.section_location = function()
-        return '%2l:%-2v'
-      end
+      -- require('mini.move').setup()
+      -- sounds kinda cool
 
       -- ... and there is more!
       --  Check out: https://github.com/echasnovski/mini.nvim
